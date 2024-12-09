@@ -1,0 +1,18 @@
+# Folosim imaginea oficiala Python ca baza
+FROM python:3.9-slim
+
+# Seteaza directorul de lucru
+WORKDIR /app
+
+# Copierea fisierelor necesare pentru aplicatie
+COPY requirements.txt /app/requirements.txt
+COPY . /app/
+
+# Instalarea dependentelor din requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expunerea portului 5000 pe care ruleaza Flask
+EXPOSE 5000
+
+# Comanda de start pentru aplicatie
+CMD ["python", "app.py"]
